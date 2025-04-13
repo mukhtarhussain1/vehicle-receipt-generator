@@ -9,9 +9,9 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'mask-icon.svg'],
       manifest: {
-        name: 'My React App',
-        short_name: 'ReactApp',
-        description: 'My Awesome React App',
+        name: 'Car Receipt',
+        short_name: 'Car Receipt',
+        description: 'App for generating vehicle receipt genertor',
         theme_color: '#ffffff',
         icons: [
           {
