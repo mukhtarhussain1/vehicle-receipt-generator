@@ -1,0 +1,106 @@
+/* Form.scss */
+.car-receipt-container {
+    padding: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+    
+    .form-card {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      overflow: hidden;
+      
+      .ant-card-body {
+        padding: 24px;
+      }
+    }
+    
+    .form-title {
+      text-align: center;
+      margin-bottom: 32px;
+      color: #1890ff;
+      position: relative;
+      
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 3px;
+        background: linear-gradient(90deg, #1890ff, #69c0ff);
+        border-radius: 3px;
+      }
+    }
+    
+    .ant-divider-inner-text {
+      font-weight: 600;
+      color: #1890ff;
+    }
+    
+    .ant-form-item-label > label {
+      font-weight: 500;
+    }
+    
+    .ant-input, .ant-picker {
+      border-radius: 6px;
+      padding: 10px 12px;
+      
+      &:hover, &:focus {
+        border-color: #1890ff;
+        box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.1);
+      }
+    }
+    
+    .form-submit {
+      margin-top: 32px;
+      
+      .ant-btn {
+        height: 48px;
+        border-radius: 6px;
+        font-weight: 500;
+        font-size: 16px;
+        box-shadow: 0 4px 6px rgba(24, 144, 255, 0.25);
+        transition: all 0.3s ease;
+        
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 6px 12px rgba(24, 144, 255, 0.3);
+        }
+      }
+    }
+    
+    .ant-form-item-has-error .ant-input, 
+    .ant-form-item-has-error .ant-picker {
+      animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+    }
+    
+    @keyframes shake {
+      10%, 90% {
+        transform: translate3d(-1px, 0, 0);
+      }
+      
+      20%, 80% {
+        transform: translate3d(2px, 0, 0);
+      }
+      
+      30%, 50%, 70% {
+        transform: translate3d(-3px, 0, 0);
+      }
+      
+      40%, 60% {
+        transform: translate3d(3px, 0, 0);
+      }
+    }
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .car-receipt-container {
+      padding: 12px;
+      
+      .form-card .ant-card-body {
+        padding: 16px;
+      }
+    }
+  }
