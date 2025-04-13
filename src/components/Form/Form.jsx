@@ -169,15 +169,15 @@ const CarReceiptForm = () => {
       let y = 35;
 
       doc.text(
-        `Received with thanks the sum of Rs ${values.advancePayment || ""}/-`,
+        `Received with thanks the sum of Rs: ${values.advancePayment || ""}/-`,
         leftX,
         y
       );
       y += lineGap;
-      doc.text(`Rupees (in Words) Rs ${amountInWords} Only`, leftX, y);
+      doc.text(`Rupees (in Words) Rs: ${amountInWords} Only`, leftX, y);
       y += lineGap;
       doc.text(
-        `From (Purchaser) Mr. ${values.buyerName || ""} S/o ${
+        `From (Purchaser) Mr/Ms. ${values.buyerName || ""} S/o ${
           values.buyerFather || ""
         }`,
         leftX,
@@ -187,7 +187,7 @@ const CarReceiptForm = () => {
       doc.text(`Resident of ${values.buyerAddress || ""}`, leftX, y);
       y += lineGap;
       doc.text(
-        `Against the sale of Motor Car ${values.carMark || ""} ${
+        `Against the sale of Motor Car ${values.carMaker || ""} ${
           values.modelNumber || ""
         }`,
         leftX,
@@ -197,33 +197,43 @@ const CarReceiptForm = () => {
 
       // First row of car details
       doc.text(`Registration # ${values.registrationNo || ""}`, leftX, y);
-      doc.text(`Maker ${values.carMark || ""}`, midX, y);
+      doc.text(`Maker: ${values.carMaker || ""}`, midX, y);
       y += lineGap;
-      doc.text(`Model ${values.modelNumber || ""}`, leftX, y);
-      doc.text(`Horse Power ${values.horsePower || ""}`, midX, y);
+      doc.text(`Model: ${values.modelNumber || ""}`, leftX, y);
+      doc.text(`Horse Power: ${values.horsePower || ""}`, midX, y);
       y += lineGap;
 
       // Second row
       doc.text(`Chasis # ${values.chassisNo || ""}`, leftX, y);
-      doc.text(`Engine# ${values.engineNo || ""}`, midX, y);
+      doc.text(`Engine # ${values.engineNo || ""}`, midX, y);
       y += lineGap;
 
       // Third row of document details
-      doc.text(`Original File: ${values.originalFile === "Yes" ? "Yes" : "No"}`, leftX, y);
-      doc.text(`Computerized No. Plate: ${values.computerizedNoPlate === "Yes" ? "Yes" : "No"}`, midX, y);
+      doc.text(
+        `Original File: ${values.originalFile === "Yes" ? "Yes" : "No"}`,
+        leftX,
+        y
+      );
+      doc.text(
+        `Computerized No. Plate: ${
+          values.computerizedNoPlate === "Yes" ? "Yes" : "No"
+        }`,
+        midX,
+        y
+      );
       y += lineGap;
-      doc.text(`Pages ${values.totalFilePages || "No"}`, leftX, y);
+      doc.text(`Pages: ${values.totalFilePages || "No"}`, leftX, y);
       y += lineGap;
 
       // Payment details
       doc.text(
-        `As payment/After Final Settlement by Cash Today (Date) ${date}`,
+        `As payment/After Final Settlement by Cash Today ${date} At Time ${time}`,
         leftX,
         y
       );
       y += lineGap;
-      doc.text(`At Time ${time}`, leftX, y);
-      y += lineGap * 2;
+      //   doc.text(`At Time ${time}`, leftX, y);
+      //   y += lineGap * 2;
 
       // Seller info
       doc.setFont("helvetica", "bold");
@@ -289,7 +299,7 @@ const CarReceiptForm = () => {
     console.log("Success:", values);
     generatePDF(values);
     // reset form
-    // form.resetFields();
+    form.resetFields();
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -329,6 +339,16 @@ const CarReceiptForm = () => {
               </Form.Item>
 
               <Form.Item
+                label="Father Name"
+                name="fatherName"
+                rules={[
+                  { required: true, message: "Please enter father name" },
+                ]}
+              >
+                <Input placeholder="Enter seller's father name" />
+              </Form.Item>
+
+              <Form.Item
                 label="Seller Contact"
                 name="sellerContact"
                 rules={[
@@ -337,16 +357,6 @@ const CarReceiptForm = () => {
                 ]}
               >
                 <Input placeholder="Enter seller's contact" />
-              </Form.Item>
-
-              <Form.Item
-                label="Father Name"
-                name="fatherName"
-                rules={[
-                  { required: true, message: "Please enter father name" },
-                ]}
-              >
-                <Input placeholder="Enter seller's father name" />
               </Form.Item>
 
               <Form.Item
@@ -420,11 +430,11 @@ const CarReceiptForm = () => {
               </Form.Item>
 
               <Form.Item
-                label="Mark"
-                name="carMark"
-                rules={[{ required: true, message: "Please enter car mark" }]}
+                label="Maker"
+                name="carMaker"
+                rules={[{ required: true, message: "Please enter car maker" }]}
               >
-                <Input placeholder="Enter car mark" />
+                <Input placeholder="Enter car maker e.g. Honda, Toyota" />
               </Form.Item>
 
               <Form.Item
